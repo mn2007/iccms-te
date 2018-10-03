@@ -1,9 +1,9 @@
 FC=mpif90
 
-LIBS=/home/guest17/opt/openfft1.2/lib/ \
-	/home/guest17/opt/fftw-3.3.4/lib
-INCLUDES=/home/guest17/opt/openfft1.2/include/ \
-	/home/guest17/opt/fftw-3.3.4/include
+LIBS=-L/home/guest17/opt/openfft1.2/lib/ \
+	-L/home/guest17/opt/fftw-3.3.4/lib
+INCLUDES=-I/home/guest17/opt/openfft1.2/include/ \
+	-I/home/guest17/opt/fftw-3.3.4/include
 	
 FFLAGS=-O3
 TARGET=iccms-te
@@ -36,4 +36,4 @@ clean:
 	rm *.o $(TARGET)
 
 %.o: %.f90
-	$(FC) $< -c -o $@ $(FFLAGS)
+	$(FC) $< -c -o $@ $(FFLAGS) $(INCLUDES)
