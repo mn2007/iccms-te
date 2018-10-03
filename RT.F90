@@ -11,7 +11,7 @@ subroutine RT(N,V,L,E,phi)
   real(8) :: A     ! Perturbation
   complex(8) :: zc(1:m_hamil)
 
-  dt=1.d-3
+  dt=5.d-2
   ntime=5000
   A=1.d-4
 
