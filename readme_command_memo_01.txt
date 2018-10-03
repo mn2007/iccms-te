@@ -1,5 +1,9 @@
 memo-181002-作業メモ-第２回計算物質科学イノベーションキャンプ-181002
 
+構築されたEigenKernelのapp
+/home/guest06/practice/eigenkernel/bin/eigenkernel_app
+
+
 
 ----------------------------------------------------
 Practice EigenKernel
