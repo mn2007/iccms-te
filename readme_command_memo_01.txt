@@ -1,10 +1,10 @@
-memo-181002-ì‹Æƒƒ‚-‘æ‚Q‰ñŒvZ•¨¿‰ÈŠwƒCƒmƒx[ƒVƒ‡ƒ“ƒLƒƒƒ“ƒv-181002
+memo-181002-ä½œæ¥­ãƒ¡ãƒ¢-ç¬¬ï¼’å›è¨ˆç®—ç‰©è³ªç§‘å­¦ã‚¤ãƒãƒ™ãƒ¼ã‚·ãƒ§ãƒ³ã‚­ãƒ£ãƒ³ãƒ—-181002
 
 
 ----------------------------------------------------
 Practice EigenKernel
-WriterF mfukuda (2018/09/26)
-ã‹L‚ğƒgƒŒ[ƒX
+Writerï¼š mfukuda (2018/09/26)
+ä¸Šè¨˜ã‚’ãƒˆãƒ¬ãƒ¼ã‚¹
 
     2  mkdir practice
     3  cd practice
@@ -36,25 +36,6 @@ total 1688
 =======================================
 
 
-
-
-
-----------------------------------------------------
-OpenFFT
-
-=======================================
-[guest06@gauss ~]$ wget http://www.openmx-square.org/openfft/openfft1.2.tar.gz
---2018-10-02 17:28:36--  http://www.openmx-square.org/openfft/openfft1.2.tar.gz
-Resolving www.openmx-square.org... 202.181.98.158
-Connecting to www.openmx-square.org|202.181.98.158|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 226416 (221K) [application/x-gzip]
-Saving to: gopenfft1.2.tar.gzh
-
-100%[======================================>] 226,416     1.12M/s   in 0.2s
-
-2018-10-02 17:28:36 (1.12 MB/s) - gopenfft1.2.tar.gzh saved [226416/226416]
-=======================================
 
 
 
