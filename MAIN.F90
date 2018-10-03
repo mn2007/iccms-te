@@ -12,6 +12,8 @@ program main
   allocate(V(1:N))
   allocate(PHI(1:N))
 
+  call SETV(N, V)
+
   call GS(N, V, L, E, PHI)
   call RT(N, V, L, E, PHI)
 
