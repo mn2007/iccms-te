@@ -11,17 +11,17 @@ TARGET=iccms-te
 $(TARGET): FFT.o HPSI.o RT.o EIGEN.o GS.o main.o
 	$(FC) $^ -o $@ $(FFLAGS) $(LIBS) 
 
-GS.o: GS.f90
+GS.o: GS.F90
 
-RT.o: RT.f90
+RT.o: RT.F90
 
-HPSI.o: HPSI.f90
+HPSI.o: HPSI.F90
 
-FFT.o: FFT.f90
+FFT.o: FFT.F90
 
-EIGEN.o: EIGEN.f90
+EIGEN.o: EIGEN.F90
 	
-main.o: main.f90
+MAIN.o: MAIN.F90
 
 
 
@@ -35,5 +35,5 @@ all: $(TARGET)
 clean:
 	rm *.o $(TARGET)
 
-%.o: %.f90
+%.o: %.F90
 	$(FC) $< -c -o $@ $(FFLAGS) $(INCLUDES)
