@@ -34,6 +34,6 @@ subroutine HPHI(N,V,A,phi,L,hphi_out)
   call FFT(N, vphi_rtmp, vphi)
     
   hphi_out = tphi + vphi + aphi
-  !  hphi(1:N)=(-k**2/2.d0-zi*(k+A)*phi(1:N)+FFT
+  !  hphi(1:N)=(-k**2/2.d0+i*k*A)*phi(1:N)+FFT
   return
 end subroutine HPHI
