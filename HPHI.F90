@@ -7,7 +7,7 @@ subroutine HPHI(N,V,A,phi,L,hphi_out)
   real(8), intent(in) :: L          ! Length of Computational Domain
   real(8), intent(out) :: hphi_out(1:N)  ! Wavefunction
   real(8), parameter :: pi = 3.141592653589793
-  complex(8), parameter :: zi=(0.d0,1.d0)
+  complex(8), parameter :: zi = (0.d0,1.d0)
 
   integer :: i
   real(8) :: ki
@@ -18,8 +18,6 @@ subroutine HPHI(N,V,A,phi,L,hphi_out)
   complex(8) :: phi_rtmp(1:N)
   complex(8) :: vphi_rtmp(1:N)
   
-  call IFFT(N, phi)
-
   do i = 1, N
     if i <= N / 2 then
       ki = (2d0 * pi / L) * (i - 1)
