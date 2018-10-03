@@ -22,17 +22,17 @@ subroutine HPHI(N,V,A,phi,L,hphi_out)
     if i <= N / 2 then
       ki = (2d0 * pi / L) * (i - 1)
     else
-      ki = (-2d0 * pi / L) * (N - i + 1)
+      ki = - (2d0 * pi / L) * (N - i + 1)
     end if
     
-    tphi(i) = - ki**2 * 0.5d0 * phi(i)
-    aphi(i) = zi * ki * A * phi(i)
+    tphi(i) = ki**2 * 0.5d0 * phi(i)
+    aphi(i) = - zi * ki * A * phi(i)
   end do
   
   call IFFT(N, phi, phi_rtmp)
   vphi_rtmp = v * phi_rtmp
   call FFT(N, vphi_rtmp, vphi)
-    
+  
   hphi_out = tphi + vphi + aphi
   !  hphi(1:N)=(-k**2/2.d0+i*k*A)*phi(1:N)+FFT
   return
