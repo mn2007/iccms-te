@@ -1,18 +1,15 @@
 subroutine EIGEN_EK(N, H, E, V)
-  
    use ek_matrix_io_m, only : ek_sparse_mat_t
-   use ek_distribute_matrix_m, only : convert_sparse_matrix_to_dense
    use ek_eigenpairs_types_m, only : ek_eigenpairs_types_union_t
-
-  
   implicit none
   integer, intent(in)     :: N
   complex(8), intent(in)  :: H(N, N)
   real(8), intent(out)    :: E        ! i-th eigenvalue
   complex(8), intent(out) :: V(N)     ! i-th eigenvector
   
-  integer, parameter      :: i = 1   type(ek_sparse_mat_t), target, intent(in) :: mat
-   type(ek_eigenpairs_types_union_t), intent(out) :: eigenpairs
+  integer, parameter      :: i = 1  
+ type(ek_sparse_mat_t)    :: mat
+   type(ek_eigenpairs_types_union_t) :: eigenpairs
 
 
 
@@ -30,11 +27,8 @@ subroutine EIGEN_EK(N, H, E, V)
 
    call dsyev("V", "U", n, eigenpairs%local%vectors, lda, &
         eigenpairs%local%values, work, lwork, info)
-        
+    E = eigenpairs%local%values(i)       
     V =  eigenpairs%local%vectors(:, i)
     return
 end subroutine EIGEN_EK
-
-
-
 
