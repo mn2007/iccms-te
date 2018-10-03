@@ -6,8 +6,8 @@ program main
   real(8) :: E          ! Eigenenergy
   real(8),allocatable :: PHI(:)  ! Wavefunction
 
-  !N=100
-  !L=10.d0
+  N=64
+  L=32.d0
 
   ! allocate(V(1:N))
   ! allocate(PHI(1:N))
