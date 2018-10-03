@@ -9,13 +9,13 @@ program main
   N=64
   L=32.d0
 
-  ! allocate(V(1:N))
-  ! allocate(PHI(1:N))
+  allocate(V(1:N))
+  allocate(PHI(1:N))
 
   call GS(N, V, L, E, PHI)
   call RT(N, V, L, E, PHI)
 
-  ! deallocate(V)
-  ! deallocate(PHI)
+  deallocate(V)
+  deallocate(PHI)
 
 end program
