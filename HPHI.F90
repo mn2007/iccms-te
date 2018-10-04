@@ -5,7 +5,7 @@ subroutine HPHI(N,V,A,phi,L,hphi_out)
   real(8), intent(in) :: A          ! Pertuabation Field
   real(8), intent(in) :: phi(1:N)   ! Wavefunction
   real(8), intent(in) :: L          ! Length of Computational Domain
-  real(8), intent(out) :: hphi_out(1:N)  ! Wavefunction
+  complex(8), intent(out) :: hphi_out(1:N)  ! Wavefunction
   real(8), parameter :: pi = 3.141592653589793
   complex(8), parameter :: zi = (0.d0,1.d0)
 

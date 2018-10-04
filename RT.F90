@@ -11,19 +11,28 @@ subroutine RT(N,V,L,E,phi)
   real(8) :: A     ! Perturbation
   complex(8) :: zc(1:m_hamil)
   integer :: it
+  integer :: interval
 
   dt=5.d-2
   ntime=5000
-  A=1.d-4
+  A=1.d-1
+  interval=100
 
   call taylor_coefficient(zc,dt)
 
-  call output_phi(N,L,phi,0)
+  call output_phi(N,L,phi,0,interval)
 
   do it=1,ntime
-    if(mod(it,10)==0) write(*,*) "it=",it
+    if(mod(it,interval)==0) write(*,*) "it=",it
     call taylor(zc,N,V,A,L,E,phi)
-    if(mod(it,10)==0) call output_phi(N,L,phi,it)
+    if(mod(it,interval)==0) call output_phi(N,L,phi,it,interval)
+    if(it<=10)then
+      if(sum(abs(phi(:))**2)<1.d8)then
+        write(*,*) it,"ok"
+      else
+        write(*,*) it,"ng"
+      end if
+    end if
   end do
 
 end subroutine
@@ -58,41 +67,41 @@ subroutine taylor(zc,N,V,A,L,E,phi)
   integer :: m
   complex(8) :: phi_tmp(1:N)
   complex(8) :: phi_out(1:N)
-  complex(8) :: hphi(1:N)
+  complex(8) :: hphi_out(1:N)
 
   phi_tmp(1:N)=phi(1:N)
   phi_out(1:N)=phi(1:N)
   do m=1,4
-!    call HPHI(N,V,A,phi_tmp,L,hphi)
-    phi_out(1:N)=phi_out(1:N)+zc(n)*hphi(1:N)
-    phi_tmp(1:N)=hphi(1:N)
+    call HPHI(N,V,A,phi_tmp,L,hphi_out)
+    phi_out(1:N)=phi_out(1:N)+zc(n)*hphi_out(1:N)
+    phi_tmp(1:N)=hphi_out(1:N)
   end do
   phi(1:N)=phi_out(1:N)
   
 end subroutine taylor
 
-subroutine output_phi(N,L,phi,it)
+subroutine output_phi(N,L,phi,it,interval)
   implicit none
   integer, intent(in) :: N            ! Size of Discretized System
   real(8), intent(in) :: L          ! Length of Computational Domain
   complex(8),intent(in) :: phi(1:N)
   integer, intent(in) :: it
+  integer, intent(in) :: interval
   complex(8) :: phi_tmp(1:N)
   character(8)  :: filenumber_data
   character(30) :: suffix
   character(30) :: filename
   integer :: i
 
-  suffix='phi'
-  write(filenumber_data, '(i8)') it
+  suffix='movie/phi'
+  write(filenumber_data, '(i2.2)') it/interval
   filename = trim(suffix)//"."//adjustl(filenumber_data)
   open(10,file=filename)
 
-  !call IFFT(N, phi, phi_tmp)
-  phi_tmp(:)=phi(:)
+  call IFFT(N, phi, phi_tmp)
 
   do i=1,N
-    write(10,*) i*L/dble(N), phi_tmp(i)
+    write(10,*) i*L/dble(N), abs(phi_tmp(i))**2
   end do
 
   close(10)
