@@ -19,7 +19,7 @@ subroutine HPHI(N,V,A,phi,L,hphi_out)
   complex(8) :: vphi_rtmp(1:N)
   
   do i = 1, N
-    if i <= N / 2 then
+    if (i <= N / 2) then
       ki = (2d0 * pi / L) * (i - 1)
     else
       ki = - (2d0 * pi / L) * (N - i + 1)

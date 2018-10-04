@@ -4,12 +4,13 @@ subroutine RT(N,V,L,E,phi)
   real(8), intent(in) :: V(1:N)     ! External Potential Field
   real(8), intent(in) :: L          ! Length of Computational Domain
   real(8), intent(in) :: E          ! Eigenenergy
-  real(8), intent(in) :: phi(1:N)   ! Wavefunction
+  complex(8), intent(inout) :: phi(1:N)   ! Wavefunction
   integer,parameter :: m_hamil=4
   integer :: ntime
   real(8) :: dt
   real(8) :: A     ! Perturbation
   complex(8) :: zc(1:m_hamil)
+  integer :: it
 
   dt=5.d-2
   ntime=5000
@@ -28,7 +29,7 @@ subroutine taylor_coefficient(zc,dt)
   integer,parameter :: m_hamil=4
   real(8),intent(in) :: dt
   complex(8),intent(out) :: zc(1:m_hamil)
-  integer :: m,n
+  integer :: m,mm
   complex(8),parameter :: zi=(0.d0,1.d0)
 
   do m=1,m_hamil
@@ -42,6 +43,7 @@ end subroutine taylor_coefficient
 
 subroutine taylor(zc,N,V,A,L,E,phi)
   implicit none
+  integer,parameter :: m_hamil=4
   complex(8),intent(inout) :: phi(1:N)
   complex(8),intent(in) :: zc(1:m_hamil)
   integer, intent(in) :: N            ! Size of Discretized System
@@ -49,7 +51,6 @@ subroutine taylor(zc,N,V,A,L,E,phi)
   real(8), intent(in) :: A            ! Perturbation
   real(8), intent(in) :: L            ! Length of Computational Domain
   real(8), intent(in) :: E            ! GS Eigenenergy
-  real(8), intent(inout) :: PHI(1:N)  ! GS Wavefunction
   integer :: m
   complex(8) :: phi_tmp(1:N)
   complex(8) :: phi_out(1:N)
@@ -58,7 +59,7 @@ subroutine taylor(zc,N,V,A,L,E,phi)
   phi_tmp(1:N)=phi(1:N)
   phi_out(1:N)=phi(1:N)
   do m=1,4
-    call HPHI(N,V,A,phi_tmp,L,hphi)
+!    call HPHI(N,V,A,phi_tmp,L,hphi)
     phi_out(1:N)=phi_out(1:N)+zc(n)*hphi(1:N)
     phi_tmp(1:N)=hphi(1:N)
   end do

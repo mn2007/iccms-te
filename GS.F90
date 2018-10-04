@@ -5,7 +5,7 @@ subroutine GS(N, V, L, E, PHI)
   real(8), intent(in) :: V(1:N)     ! External Potential Field
   real(8), intent(in) :: L          ! Length of Computational Domain
   real(8), intent(out) :: E         ! [Result] GS Eigenenergy
-  real(8), intent(out) :: PHI(1:N)  ! [Result] GS Wavefunction
+  complex(8), intent(out) :: PHI(1:N)  ! [Result] GS Wavefunction
   
   complex(8) :: H(1:N, 1:N)         ! Hamiltonian Matrix
   
