@@ -16,8 +16,8 @@ call dfftw_execute(plan)
 call dfftw_destroy_plan(plan)
 
 
-norm=0.do
-do i=1,ix
+norm=0.d0
+do i=1,N
 norm=norm+abs(G(i))**2
 enddo
 norm=sqrt(norm)
