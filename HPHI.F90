@@ -26,7 +26,7 @@ subroutine HPHI(N,V,A,phi,L,hphi_out)
     end if
     
     tphi(i) = ki**2 * 0.5d0 * phi(i)
-    aphi(i) = - zi * ki * A * phi(i)
+    aphi(i) = ki * A * phi(i)
   end do
   
   !call IFFT(N, phi, phi_rtmp)
