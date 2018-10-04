@@ -18,8 +18,12 @@ subroutine RT(N,V,L,E,phi)
 
   call taylor_coefficient(zc,dt)
 
+  call output_phi(N,L,phi,0)
+
   do it=1,ntime
+    if(mod(it,10)==0) write(*,*) "it=",it
     call taylor(zc,N,V,A,L,E,phi)
+    if(mod(it,10)==0) call output_phi(N,L,phi,it)
   end do
 
 end subroutine
@@ -67,3 +71,30 @@ subroutine taylor(zc,N,V,A,L,E,phi)
   
 end subroutine taylor
 
+subroutine output_phi(N,L,phi,it)
+  implicit none
+  integer, intent(in) :: N            ! Size of Discretized System
+  real(8), intent(in) :: L          ! Length of Computational Domain
+  complex(8),intent(in) :: phi(1:N)
+  integer, intent(in) :: it
+  complex(8) :: phi_tmp(1:N)
+  character(8)  :: filenumber_data
+  character(30) :: suffix
+  character(30) :: filename
+  integer :: i
+
+  suffix='phi'
+  write(filenumber_data, '(i8)') it
+  filename = trim(suffix)//"."//adjustl(filenumber_data)
+  open(10,file=filename)
+
+  !call IFFT(N, phi, phi_tmp)
+  phi_tmp(:)=phi(:)
+
+  do i=1,N
+    write(10,*) i*L/dble(N), phi_tmp(i)
+  end do
+
+  close(10)
+ 
+end subroutine
