@@ -24,7 +24,9 @@ subroutine GS(N, V, L, E, PHI)
   end do
   
   !! Please comment out after implementation of EIGEN:
-  call EIGEN(N, H, E, PHI)
+  call EIGEN_EK(N, H, E, PHI)
+  !! Please comment out after implementation of EIGEN:
+  !call EIGEN(N, H, E, PHI)
   
   return
 end subroutine GS
