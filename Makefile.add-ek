@@ -11,7 +11,7 @@ FFLAGS=-O3
 TARGET=iccms-te
 
 #$(TARGET): SETV.o FFT.o HPHI.o RT.o EIGEN.o GS.o MAIN.o
-$(TARGET): SETV.o HPHI.o RT.o EIGEN_LAPACK.o GS.o MAIN.o
+$(TARGET): SETV.o HPHI.o RT.o EIGEN_LAPACK.o GS.o MAIN.o EIGEN_EK.o
 	$(FC) $^ -o $@ $(FFLAGS) $(LIBS) 
 
 GS.o: GS.F90
