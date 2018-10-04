@@ -18,13 +18,13 @@ subroutine GS(N, V, L, E, PHI)
     phi_tmp(k) = 1d0
     
     !! Please comment out after implementation of HPSI:
-    ! call HPHI(N, V, 0d0, phi_tmp, L, hphi_tmp)
+    call HPHI(N, V, 0d0, phi_tmp, L, hphi_tmp)
     
     H(:, k) = hphi_tmp(:)
   end do
   
   !! Please comment out after implementation of EIGEN:
-  ! call EIGEN(N, H, E, PHI)
+  call EIGEN(N, H, E, PHI)
   
   return
 end subroutine GS

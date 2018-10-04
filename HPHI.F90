@@ -29,9 +29,9 @@ subroutine HPHI(N,V,A,phi,L,hphi_out)
     aphi(i) = - zi * ki * A * phi(i)
   end do
   
-  call IFFT(N, phi, phi_rtmp)
+  !call IFFT(N, phi, phi_rtmp)
   vphi_rtmp = v * phi_rtmp
-  call FFT(N, vphi_rtmp, vphi)
+  !call FFT(N, vphi_rtmp, vphi)
   
   hphi_out = tphi + vphi + aphi
   !  hphi(1:N)=(-k**2/2.d0+i*k*A)*phi(1:N)+FFT
